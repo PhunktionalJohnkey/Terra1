@@ -41,7 +41,7 @@
     launch_configuration = "${aws_launch_configuration.phunky-launchconfig.id}"
     availability_zones ["${data.aws_availability_zones.all.names}"]
 
-    load_balancers     =  ["${aws_elb.asg1-elb.name}']
+    load_balancers     =  ["${aws_elb.asg1-elb.name}"]
     health_check_type  =  "ELB"
 
     min_size = 2 
