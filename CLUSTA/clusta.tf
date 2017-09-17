@@ -109,6 +109,6 @@
  output "elb_dns_name" {
     value = "${aws_elb.asg1-elb.dns_name}"
   }
-}
+
 
            
