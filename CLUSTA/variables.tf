@@ -5,7 +5,7 @@ variable "lb_port" {
   }
 
 variable "server_port" {
-   desccription = "Server port"
+   description = "Server port"
   }
 
 
