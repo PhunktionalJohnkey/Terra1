@@ -8,4 +8,7 @@ variable "server_port" {
    description = "Server port"
   }
 
+variable "ami" {
+   description = "AWS AMI used"
+  }
 
