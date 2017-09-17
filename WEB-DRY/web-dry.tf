@@ -2,7 +2,7 @@
 
 #Provider details
  provider "aws" { 
-     region = "${var.region}
+     region = "${var.region}"
    }
 
 #Web Instance Configuration
