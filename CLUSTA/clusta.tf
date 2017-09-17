@@ -1,9 +1,14 @@
 #Configuration for Web Server Cluster
 
+#provider details 
+
+  provider "aws" {
+     region = "eu-west-2"
+    }
 #Launch Configuration details
 
  resource "aws_launch_configuration" "phunky-launchconfig" {
-      image-id      = "${var.ami}"
+      image_id      = "${var.ami}"
       instance_type = "t2.micro"
       security_groups = ["${aws_security_group.websecgrp.id}"]
       
@@ -27,7 +32,7 @@
           from_port  =  "${var.server_port}"
           to_port    =  "${var.server_port}"
           protocol   =  "tcp"
-          cidr_block =  ["0.0.0.0/0"]
+          cidr_blocks =  ["0.0.0.0/0"]
         }
        
        lifecycle {
@@ -39,7 +44,7 @@
  
  resource "aws_autoscaling_group" "clusta-ag" {
     launch_configuration = "${aws_launch_configuration.phunky-launchconfig.id}"
-    availability_zones = ["${data.aws_availability_zones.all.names}"]
+    availability_zones = ["eu-west-2a","eu-west-2b"]
 
     load_balancers     =  ["${aws_elb.asg1-elb.name}"]
     health_check_type  =  "ELB"
@@ -78,7 +83,7 @@
 
  resource "aws_elb" "asg1-elb" {
     name    = "asg1-loadbalancer"
-    availability_zones = ["${data.aws_availability_zones.all.names}"]
+    availability_zones = ["eu-west-2a","eu-west-2b"]
     security_groups = ["${aws_security_group.elb.id}"]
 
 #Create Listener instructing ELB how to route traffic
@@ -97,6 +102,7 @@
       interval             = 30
       target               = "HTTP:${var.server_port}/"
      }
+  }
 
 #Useful outputs
 
