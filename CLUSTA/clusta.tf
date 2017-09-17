@@ -39,7 +39,7 @@
  
  resource "aws_autoscaling_group" "clusta-ag" {
     launch_configuration = "${aws_launch_configuration.phunky-launchconfig.id}"
-    availability_zones ['${data.aws_availability_zones.all.names}"]
+    availability_zones ["${data.aws_availability_zones.all.names}"]
 
     load_balancers     =  ["${aws_elb.asg1-elb.name}']
     health_check_type  =  "ELB"
