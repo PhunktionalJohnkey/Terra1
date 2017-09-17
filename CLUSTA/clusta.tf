@@ -5,7 +5,7 @@
  resource "aws_launch_configuration" "phunky-launchconfig" {
       image-id      = "${var.ami}"
       instance_type = "t2.micro"
-      security_groups = ["${aws_security_group_websecgrp.id}"]
+      security_groups = ["${aws_security_group.websecgrp.id}"]
       
       user_data = <<-EOF
                   #!/bin/bash
